@@ -23,8 +23,18 @@ npm run dev -- --help
 
 - `claude-go --help`
 - `cg --help`
+- 直接启动并透传参数到目标命令（默认交互选择 `claude` 或 `k2`）：
+  - `cg -m sonnet --temperature 0.2`
+  - `cg -- -m sonnet --temperature 0.2`（等价写法）
+- 编辑配置：
+  - `cg edit claude`（编辑 `~/.claude/settings.claude.json`）
+  - `cg edit k2`（编辑 `~/.claude/settings.k2.json`）
+  - `cg edit --common`（编辑公共配置 `~/.claude/settings.json`）
 
-当前仅展示基础帮助信息与版本号，功能尚未实现。
+说明：
+
+- CLI 会在运行前将 `settings.{target}.json` 深合并到 `settings.json` 并注入 `env`（如存在）到子进程环境变量。
+- 未知参数将“全量透传”给子进程（不需要 `--`，但使用 `--` 也可）。
 
 ## 开发
 
@@ -80,4 +90,3 @@ npm run release:version
 ## 许可证
 
 MIT
-
