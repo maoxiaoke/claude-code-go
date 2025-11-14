@@ -18,10 +18,10 @@ export async function openInEditor(initialContent: string, targetPath: string): 
 		throw result.error;
 	}
 	if (result.status !== 0) {
-		throw new Error(`${editor} 退出码 ${result.status}`);
+		throw new Error(`${editor} exit code ${result.status}`);
 	}
 	const edited = fs.readFileSync(tmpFile, 'utf8');
-	// 清理临时文件夹
+	// Clean up temporary directory
 	try {
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	} catch {
